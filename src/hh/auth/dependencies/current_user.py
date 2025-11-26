@@ -2,7 +2,7 @@ from typing import Annotated
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 
-from hh.security.service import TokenService
+from hh.auth.service.token import TokenService
 from hh.user.dependencies.repository import IUserRepository
 from hh.user.dto import UserDTO
 from hh.user.exceptions import UserNotFound

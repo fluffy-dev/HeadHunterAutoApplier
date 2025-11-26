@@ -2,25 +2,9 @@ from datetime import datetime, timedelta, timezone
 from typing import Optional
 
 from jose import JWTError, jwt
-from passlib.context import CryptContext
 
 from hh.config.security import settings as auth_settings
-from hh.security.dto import TokenPayloadDTO
-
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-
-class PasswordService:
-    """
-    Provides services for password hashing and verification.
-    """
-    @staticmethod
-    def verify_password(plain_password: str, hashed_password: str) -> bool:
-        return pwd_context.verify(plain_password, hashed_password)
-
-    @staticmethod
-    def get_password_hash(password: str) -> str:
-        return pwd_context.hash(password)
-
+from hh.auth.dto import TokenPayloadDTO
 
 class TokenService:
     """
