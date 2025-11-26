@@ -1,10 +1,11 @@
 from fastapi.security import OAuth2PasswordRequestForm
 
-from hh.user.dependencies.repository import IUserRepository
-from hh.user.dto import FindUserDTO
-from hh.user.exceptions import UserNotFound
-from hh.security.service import PasswordService, TokenService
-from hh.security.dto import TokenDTO
+from hh.auth.dependencies.user_repository import IUserRepository
+from hh.auth.dto import FindUserDTO
+from hh.auth.exceptions import UserNotFound
+from hh.auth.service.password import PasswordService
+from hh.auth.service.token import TokenService
+from hh.auth.dto import TokenDTO
 
 class AuthService:
     """
@@ -37,3 +38,5 @@ class AuthService:
         refresh_token = TokenService.create_refresh_token(data={"sub": str(user.id)})
 
         return TokenDTO(access_token=access_token, refresh_token=refresh_token)
+
+    #TODO: Add registration endpoint

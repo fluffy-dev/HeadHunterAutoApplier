@@ -3,10 +3,10 @@ from typing import Optional, List
 from sqlalchemy import select, update
 from sqlalchemy.exc import IntegrityError
 
-from hh.user.exceptions import UserAlreadyExist, UserNotFound
+from hh.auth.exceptions import UserAlreadyExist, UserNotFound
 from hh.config.database.session import ISession
-from hh.user.models.user import UserModel
-from hh.user.dto import UpdateUserDTO, UserDTO, FindUserDTO
+from hh.auth.models.user import UserModel
+from hh.auth.dto import UpdateUserDTO, UserDTO, FindUserDTO
 
 
 class UserRepository:

@@ -3,9 +3,9 @@ from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 
 from hh.auth.service.token import TokenService
-from hh.user.dependencies.repository import IUserRepository
-from hh.user.dto import UserDTO
-from hh.user.exceptions import UserNotFound
+from hh.auth.dependencies.user_repository import IUserRepository
+from hh.auth.dto import UserDTO
+from hh.auth.exceptions import UserNotFound
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/token")
 IToken = Annotated[str, Depends(oauth2_scheme)]
@@ -31,7 +31,7 @@ async def get_current_user(token: IToken, user_repo: IUserRepository) -> UserDTO
 
     user_id = int(payload.sub)
     try:
-        user = await user_repo.get(user_id)
+        user = await user_repo.get(user_id) #TODO restrict using repository from interface level, instead use service
         return user
     except UserNotFound:
         raise credentials_exception

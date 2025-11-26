@@ -1,5 +1,5 @@
 from fastapi import Depends
 from typing import Annotated
-from hh.user.service import UserService
+from hh.auth.service.user import UserService
 
 IUserService: type[UserService] = Annotated[UserService, Depends()]

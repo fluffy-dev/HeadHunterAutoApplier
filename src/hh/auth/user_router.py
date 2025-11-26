@@ -1,9 +1,9 @@
 from fastapi import APIRouter, status
 from typing import List
 
-from hh.user.dependencies.service import IUserService
-from hh.user.dto import UserDTO, PublicUserDTO, PrivateUserDTO
-from hh.security.dependencies import ICurrentUser
+from hh.auth.dependencies.user_service import IUserService
+from hh.auth.dto import UserDTO, PublicUserDTO, PrivateUserDTO
+from hh.auth.dependencies.current_user import ICurrentUser
 
 router = APIRouter(prefix="/users", tags=["Users"])
 

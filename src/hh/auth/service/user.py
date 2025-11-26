@@ -1,9 +1,9 @@
 from typing import List
 
 from hh.libs.exceptions import PaginationError
-from hh.user.dependencies.repository import IUserRepository
-from hh.user.dto import UserDTO, PublicUserDTO, PrivateUserDTO
-from hh.security.service import PasswordService
+from hh.auth.dependencies.user_repository import IUserRepository
+from hh.auth.dto import UserDTO, PublicUserDTO, PrivateUserDTO
+from hh.auth.service.password import PasswordService
 
 class UserService:
     def __init__(self, user_repository: IUserRepository):

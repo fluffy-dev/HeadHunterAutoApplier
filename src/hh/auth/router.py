@@ -3,10 +3,9 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
 
 from hh.auth.dependencies.service import IAuthService
-from hh.user.exceptions import UserNotFound
-from hh.security.dto import TokenDTO
-from hh.security.dependencies import ICurrentUser
-
+from hh.auth.exceptions import UserNotFound
+from hh.auth.dto import TokenDTO
+from hh.auth.dependencies.current_user import ICurrentUser
 
 from hh.integration.hh.dependencies.service import IHHService
 from hh.vacancy.dependencies.service import IVacancyService

@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from hh.user.router import router as user_router
+from hh.user.user_router import router as user_router
 from hh.auth.router import router as auth_router
 from hh.vacancy.router import router as vacancy_router
 
