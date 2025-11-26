@@ -4,13 +4,11 @@ from fastapi.security import OAuth2PasswordBearer
 
 from hh.auth.service.token import TokenService
 from hh.auth.dependencies.user_repository import IUserRepository
-from hh.auth.dto import UserDTO
+from hh.auth.dto import UserDTO, AccessTokenDTO
 from hh.auth.exceptions import UserNotFound
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/token")
-IToken = Annotated[str, Depends(oauth2_scheme)]
 
-async def get_current_user(token: IToken, user_repo: IUserRepository) -> UserDTO:
+async def get_current_user(token: AccessTokenDTO, user_repo: IUserRepository) -> UserDTO:
     """
     Dependency to get the current user from a JWT token.
 
@@ -25,7 +23,11 @@ async def get_current_user(token: IToken, user_repo: IUserRepository) -> UserDTO
         detail="Could not validate credentials",
         headers={"WWW-Authenticate": "Bearer"},
     )
-    payload = TokenService.verify_token(token)
+
+    access_token = token.access_token
+
+    payload = TokenService.verify_token(access_token)
+
     if payload is None or payload.sub is None:
         raise credentials_exception
 

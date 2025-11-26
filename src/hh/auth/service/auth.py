@@ -40,3 +40,6 @@ class AuthService:
         return TokenDTO(access_token=access_token, refresh_token=refresh_token)
 
     #TODO: Add registration endpoint
+
+    async def register(self, form_data) -> TokenDTO:
+        ...

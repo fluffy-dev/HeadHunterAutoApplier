@@ -17,6 +17,12 @@ class TokenPayloadDTO(BaseModel):
     """
     sub: str | None = None
 
+class AccessTokenDTO(BaseModel):
+    """
+    DTO for the access token data.
+    """
+    access_token: str
+    token_type: str = "bearer"
 
 #User
 
